@@ -1,0 +1,4 @@
+aaaa+ bbbb * cddd = dtyg
+num - 3 = num
+base ^ 6 = val
+_power
