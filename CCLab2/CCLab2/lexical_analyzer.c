@@ -65,7 +65,7 @@ int isop(char tok)
 int isidentifier(char *input)
 {
 	// check first character condition
-	if (!isalpha((unsigned char)input[0]))
+	if (!isalpha((unsigned char)input[0]) && input[0] != '_')
 		return 0;
 
 	char* iter = input + 1;
