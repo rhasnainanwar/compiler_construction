@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_ID_LEN 128
 #define BUFFER_SIZE 11
+#define SENTINEL '\?'
 
 int fill_buffer(FILE*, char*);
+int fill_buffer_pair(FILE*, char*, int);
 int isop(char);
 int isidentifier(char*);
