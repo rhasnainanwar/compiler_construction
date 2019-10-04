@@ -6,6 +6,7 @@
 #define MAX_PROD 10
 
 void check_recursion(char [MAX_PROD][MAX_SIZE], int);
+void fix_recursion(char [MAX_SIZE], char, char, char);
 
 int main(){
 
@@ -28,6 +29,14 @@ int main(){
 	return 0;
 }
 
+
+void fix_recursion(char production[MAX_SIZE], char non_terminal, char alpha, char beta){
+	printf("Production without left recursion:\n");  
+	printf("%c->%c%c\'", non_terminal, beta, non_terminal);
+	printf("\n%c\'->%c%c\'|~\n", non_terminal, alpha, non_terminal);
+}
+
+
 void check_recursion(char grammar[MAX_PROD][MAX_SIZE], int num){
 	char left, alpha;
 	int offset;
@@ -40,6 +49,11 @@ void check_recursion(char grammar[MAX_PROD][MAX_SIZE], int num){
 		while(offset < strlen(grammar[i])){
 			if(left == grammar[i][offset]){
 				printf("This production is left-recursive.\n");
+
+				int index = offset;
+				while(grammar[i][index]!='|' && index < strlen(grammar[i]))
+					index++;
+				fix_recursion(grammar[i], left, grammar[i][offset+1], grammar[i][index+1]);
 				break;
 			}
 			while(grammar[i][offset]!='|' && offset < strlen(grammar[i]))
